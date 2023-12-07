@@ -1,4 +1,4 @@
-<form class="todo-form">
+<div class="todo-form">
   <div class="form-group">
     <label for="description">Type your name:</label>
     <input
@@ -7,6 +7,7 @@
       name="name"
       [(ngModel)]="name"
       autocomplete="off"
+      [disabled]="isPaying"
     />
   </div>
 
@@ -16,6 +17,7 @@
       [options]="syzeOptions"
       [optionSelected]="newSyzes"
       (onSelect)="changeSyze($event)"
+      [disabled]="isPaying"
     />
   </div>
 
@@ -24,6 +26,7 @@
     <app-dropdown
       [options]="typeOptions"
       [optionSelected]="newCoffeeType"
+      [disabled]="isPaying"
       (onSelect)="changeType($event)"
     />
   </div>
@@ -34,8 +37,34 @@
       [options]="toppingsOptions"
       [selectedOptions]="newToppings"
       (onSelect)="changeToppings($event)"
+      [disabled]="isPaying"
     />
   </div>
+  <button *ngIf="!isPaying" (click)="payment()">Calculate price</button>
+</div>
 
-  <button (click)="addTodo()">New order</button>
-</form>
+<div class="todo-form" *ngIf="isPaying">
+  <div class="form-group">
+    <label for="description">Price:</label>
+    <input
+      type="number"
+      disabled
+      [(ngModel)]="finalPrice"
+    />
+  </div>
+  <div class="form-group">
+    <label for="description">Paid:</label>
+    <input
+      type="number"
+      disabled
+      [(ngModel)]="paid"
+    />
+  </div>
+  <div class="form-group">
+    <label for="description">Coins / Bills:</label>
+    <app-multi-dropdown
+      [options]="paymentOptions"
+      [selectedOptions]="paymentChoice"
+      (onSelect)="changePayedAmount($event)"
+    />
+  </div>

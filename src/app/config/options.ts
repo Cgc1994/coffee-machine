@@ -20,6 +20,13 @@ export const toppingsOptions: { name: string; value: Toppings, quantity: number,
   { value: 'Vanilla syrup', name: traductions['vanillaSyrup'], quantity: 0, price: 2 },
 ];
 
+export const paymentOptions: { name: string; value: number, quantity: number}[] = [
+  { name: '1€ coin', value: 1, quantity: 0 },
+  { name: '2€ coin', value: 2, quantity: 0 },
+  { name: '5€ bill', value: 5, quantity: 0 },
+  { name: '10€ bill', value: 10, quantity: 0 },
+];
+
 export const filterOptions: { name: string; value: FilterStatus }[] = [
   { value: 'all', name: traductions['all'] },
   ...formOptions,

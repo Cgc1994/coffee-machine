@@ -1,7 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { Todo } from 'src/app/interfaces/todos.interfaces';
 import { TodosService } from 'src/app/services/todos.service';
-import { traductions } from 'src/app/utils/traductions';
 
 @Component({
   selector: 'app-todo-list-item',
@@ -13,7 +12,6 @@ export class TodoListItemComponent {
   showCancelButton: boolean = true;
 
   ngOnInit() {
-    // Después de 5 segundos, ocultar el botón
     setTimeout(() => {
       this.showCancelButton = false;
     }, 5000);
@@ -30,8 +28,8 @@ export class TodoListItemComponent {
         }
       }
     }
-    
-    return toppings;
+    if (toppings !== '') return 'Toppings: ' + toppings;
+    return '';
   }
 
   public removeTodo() {

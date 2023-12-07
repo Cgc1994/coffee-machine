@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { formOptions, coffeeTypesOptions, toppingsOptions } from 'src/app/config/options';
-import { Todo, Syzes, CoffeeTypes, SelectedTopping, Toppings } from 'src/app/interfaces/todos.interfaces';
+import { formOptions, coffeeTypesOptions, toppingsOptions, paymentOptions } from 'src/app/config/options';
+import { Todo, Syzes, CoffeeTypes, SelectedTopping, Toppings, PaymentOption } from 'src/app/interfaces/todos.interfaces';
 import { TodosService } from 'src/app/services/todos.service';
 
 @Component({
@@ -15,20 +15,36 @@ export class TodoFormComponent {
   public newSyzes: { value: Syzes; name: string, price: number } = formOptions[0];
   public newCoffeeType: { value: CoffeeTypes; name: string, price: number } = coffeeTypesOptions[0];
   public newToppings: Array<SelectedTopping> = [];
+  public paymentChoice: Array<PaymentOption> = [];
   public syzeOptions = formOptions;
   public typeOptions = coffeeTypesOptions;
   public toppingsOptions = toppingsOptions;
+  public paymentOptions = paymentOptions;
+  public isPaying: boolean = false;
+  public disabledForm: boolean = false;
+  public finalPrice: number = 0;
+  public paid: number = 0;
+  public orderNumber: number = 1;
 
+  public payment() {
+    if (this.name !== '') {
+      let toppingsPrice = 0;
+      this.toppingsOptions.forEach(topping => {
+        toppingsPrice += topping.price * topping.quantity;
+      });
+      this.finalPrice = this.newSyzes.price + this.newCoffeeType.price + toppingsPrice;
+      this.isPaying = true;
+      this.disabledForm = true;
+    } else {
+      alert('Type your name first');
+    }
+    
+  }
   public addTodo() {
     const selectedToppings: any[] = this.toppingsOptions.map(topping => ({
       topping: topping.name,
       quantity: topping.quantity,
     }));
-    let toppingsPrice = 0;
-    this.toppingsOptions.forEach(topping => {
-      toppingsPrice += topping.price * topping.quantity;
-    });
-    const finalPrice = this.newSyzes.price + this.newCoffeeType.price + toppingsPrice;
     const newTodo: Todo = {
       id: Math.random(),
       name: this.name,
@@ -36,15 +52,22 @@ export class TodoFormComponent {
       type: this.newCoffeeType.value,
       toppings: selectedToppings,
       createdAt: new Date(),
-      price: finalPrice
+      price: this.finalPrice,
+      orderNumber: this.orderNumber,
     };
 
     this.todosService.addTodo(newTodo);
+    this.isPaying = false;
+    this.disabledForm = false;
+    this.finalPrice = 0;
+    this.paid = 0;
+    this.orderNumber +=1;
 
     this.name = '';
     this.newSyzes = formOptions[0];
     this.newCoffeeType = coffeeTypesOptions[0];
     this.newToppings = [];
+    this.paymentChoice = [];
   }
 
   public changeSyze(newSyze: { value: Syzes; name: string, price: number }) {
@@ -56,5 +79,12 @@ export class TodoFormComponent {
   }
   public changeToppings(newToppings: SelectedTopping[]) {
     this.newToppings = newToppings;
+  }
+
+  public changePayedAmount(paymentChoice: PaymentOption[]) {
+    this.paid = 0;
+    for (const item of paymentOptions) {
+      this.paid += (item.value * item.quantity);
+    }
   }
 }

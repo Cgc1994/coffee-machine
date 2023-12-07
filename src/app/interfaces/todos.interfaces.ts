@@ -6,6 +6,7 @@ export interface Todo {
   toppings: Array<Toppings>;
   createdAt: string | Date;
   price: number;
+  orderNumber: number;
 }
 export interface SelectedTopping {
   name: string;
@@ -14,6 +15,12 @@ export interface SelectedTopping {
 
 export interface SelectedOption {
   name: string;
+  quantity: number;
+}
+
+export interface PaymentOption {
+  name: string;
+  value: number;
   quantity: number;
 }
 

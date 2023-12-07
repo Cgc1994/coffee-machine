@@ -10,12 +10,15 @@ export class MultiDropdownComponent {
   @Input() placeholder?: string;
   @Input() options: any[] = [];
   @Input() selectedOptions: SelectedOption[] = [];
+  @Input() disabled: boolean = false;
   @Output() onSelect: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   public open: boolean = false;
 
   public toggleDropdown() {
-    this.open = !this.open;
+    if (!this.disabled) {
+      this.open = !this.open;
+    }
   }
 
   public toggleOption(option: any) {
