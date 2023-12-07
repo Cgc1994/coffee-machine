@@ -1,0 +1,41 @@
+<form class="todo-form" (ngSubmit)="addTodo()">
+  <div class="form-group">
+    <label for="description">Type your name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="name"
+      autocomplete="off"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="description">Cup syze:</label>
+    <app-dropdown
+      [options]="syzeOptions"
+      [optionSelected]="newSyzes"
+      (onSelect)="changeSyze($event)"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="description">Coffee Type:</label>
+    <app-dropdown
+      [options]="typeOptions"
+      [optionSelected]="newCoffeeType"
+      (onSelect)="changeType($event)"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="description">Toppings / syrups:</label>
+    <app-multi-dropdown
+      [options]="toppingsOptions"
+      [selectedOptions]="newToppings"
+      (onSelect)="changeToppings($event)"
+    />
+  </div>
+
+  <button type="submit">New order</button>
+</form>

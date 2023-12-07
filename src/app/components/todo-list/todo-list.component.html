@@ -1,0 +1,6 @@
+<p style="margin-left:auto">Items totales: {{ todoList?.length || 0 }} ({{countPendientes()}} pendientes)</p>
+<app-todo-list-item
+  style="height: fit-content"
+  *ngFor="let todo of todoList"
+  [todo]="todo"
+/>

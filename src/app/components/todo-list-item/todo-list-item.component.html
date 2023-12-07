@@ -1,0 +1,22 @@
+<div *ngIf="todo" class="todo" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+  <div class="top">
+    <p *ngIf="todo.createdAt">{{ todo.createdAt | dateFormat }}</p>
+    <div class="top" *ngIf="isHovered">
+    <button (click)="removeTodo()">
+      <img src="assets/cross_mark.svg" alt="cross" />
+    </button>
+  </div>
+  </div>
+
+  <div class="bottom">
+    <span
+      [ngStyle]="{
+        'text-decoration': todo.syze === 'medium' ? 'line-through' : 'none'
+      }"
+    >
+      {{ todo.name }}
+    </span>
+    <p>Estatus: {{optionSelected?.name}}</p>
+    <input type="checkbox" disabled id="statusCheckbox" name="statusCheckbox" [checked]="optionSelected?.value === 'medium'" />
+  </div>
+</div>
