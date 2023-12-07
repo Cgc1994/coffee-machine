@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { SelectedOption } from 'src/app/interfaces/todos.interfaces';
 
 @Component({
   selector: 'app-multi-dropdown',
@@ -8,7 +9,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class MultiDropdownComponent {
   @Input() placeholder?: string;
   @Input() options: any[] = [];
-  @Input() selectedOptions: any[] = [];
+  @Input() selectedOptions: SelectedOption[] = [];
   @Output() onSelect: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   public open: boolean = false;
@@ -27,11 +28,20 @@ export class MultiDropdownComponent {
     this.onSelect.emit(this.selectedOptions);
   }
 
-  public isOptionSelected(option: any): boolean {
-    return this.selectedOptions.includes(option);
+  public getSelectedOptionsText(): string {
+    return this.selectedOptions.map(option => option).join(', ');
   }
 
-  public getSelectedOptionsText(): string {
-    return this.selectedOptions.map(option => option.name).join(', ');
+  public increaseQuantity(selectedOption: SelectedOption) {
+    selectedOption.quantity++;
+    this.onSelect.emit(this.selectedOptions);
   }
+  
+  public decreaseQuantity(selectedOption: SelectedOption) {
+    if (selectedOption.quantity > 0) {
+      selectedOption.quantity--;
+      this.onSelect.emit(this.selectedOptions);
+    }
+  }
+  
 }

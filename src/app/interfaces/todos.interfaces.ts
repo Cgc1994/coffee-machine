@@ -5,10 +5,16 @@ export interface Todo {
   type: CoffeeTypes,
   toppings: Array<Toppings>;
   createdAt: string | Date;
+  price: number;
 }
 export interface SelectedTopping {
   name: string;
-  value: Toppings;
+  quantity: number;
+}
+
+export interface SelectedOption {
+  name: string;
+  quantity: number;
 }
 
 export type Syzes = 'small' | 'medium' | 'large';

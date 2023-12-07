@@ -12,22 +12,31 @@ export class TodoFormComponent {
   private todosService = inject(TodosService);
 
   public name: string = '';
-  public newSyzes: { value: Syzes; name: string } = formOptions[0];
-  public newCoffeeType: { value: CoffeeTypes; name: string } = coffeeTypesOptions[0];
+  public newSyzes: { value: Syzes; name: string, price: number } = formOptions[0];
+  public newCoffeeType: { value: CoffeeTypes; name: string, price: number } = coffeeTypesOptions[0];
   public newToppings: Array<SelectedTopping> = [];
   public syzeOptions = formOptions;
   public typeOptions = coffeeTypesOptions;
   public toppingsOptions = toppingsOptions;
 
   public addTodo() {
-    const selectedToppingsValues: Array<Toppings> = this.newToppings.map(topping => topping.value);
+    const selectedToppings: any[] = this.toppingsOptions.map(topping => ({
+      topping: topping.name,
+      quantity: topping.quantity,
+    }));
+    let toppingsPrice = 0;
+    this.toppingsOptions.forEach(topping => {
+      toppingsPrice += topping.price * topping.quantity;
+    });
+    const finalPrice = this.newSyzes.price + this.newCoffeeType.price + toppingsPrice;
     const newTodo: Todo = {
       id: Math.random(),
       name: this.name,
       syze: this.newSyzes.value,
       type: this.newCoffeeType.value,
-      toppings: selectedToppingsValues,
+      toppings: selectedToppings,
       createdAt: new Date(),
+      price: finalPrice
     };
 
     this.todosService.addTodo(newTodo);
@@ -38,11 +47,11 @@ export class TodoFormComponent {
     this.newToppings = [];
   }
 
-  public changeSyze(newSyze: { value: Syzes; name: string }) {
+  public changeSyze(newSyze: { value: Syzes; name: string, price: number }) {
     this.newSyzes = newSyze;
   }
 
-  public changeType(newType: { value: CoffeeTypes; name: string }) {
+  public changeType(newType: { value: CoffeeTypes; name: string, price: number }) {
     this.newCoffeeType = newType;
   }
   public changeToppings(newToppings: SelectedTopping[]) {

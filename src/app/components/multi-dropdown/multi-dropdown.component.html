@@ -1,10 +1,5 @@
 <div class="selectContainer">
   <div (click)="toggleDropdown()" class="select">
-    <ng-container *ngIf="selectedOptions.length > 0; else placeholderTemplate">
-      <p class="option-select">
-        <span>{{ getSelectedOptionsText() }}</span>
-      </p>
-    </ng-container>
     <app-arrow [open]="open" />
   </div>
 
@@ -16,10 +11,15 @@
     >
       <span>
         {{ option.name }}
-        <input type="checkbox" [checked]="isOptionSelected(option)" />
+          <span>
+            <button (click)="decreaseQuantity(option)">-</button>
+            <button (click)="increaseQuantity(option)">+</button>
+            {{ option.quantity }}
+          </span>
       </span>
     </div>
   </div>
+  
 </div>
 
 <ng-template #placeholderTemplate>

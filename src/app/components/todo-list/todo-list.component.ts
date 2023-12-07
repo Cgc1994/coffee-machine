@@ -8,8 +8,4 @@ import { Todo } from 'src/app/interfaces/todos.interfaces';
 })
 export class TodoListComponent {
   @Input() todoList?: Todo[] | null;
-
-  countPendientes(): number {
-    return this.todoList?.filter(todo => todo.syze === 'small').length || 0;
-  }
 }

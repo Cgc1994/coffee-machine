@@ -10,23 +10,37 @@ import { traductions } from 'src/app/utils/traductions';
 })
 export class TodoListItemComponent {
   @Input() todo?: Todo;
-  isHovered: boolean = false;
+  showCancelButton: boolean = true;
+
+  ngOnInit() {
+    // Después de 5 segundos, ocultar el botón
+    setTimeout(() => {
+      this.showCancelButton = false;
+    }, 5000);
+  }
 
   private todosService = inject(TodosService);
 
-  get optionSelected() {
-    return { value: this.todo?.syze, name: traductions[this.todo?.syze!] };
+  get toppings() {
+    let toppings = '';
+    for (const topping of this.todo?.toppings || []) {
+      if (typeof topping === 'object' && topping !== null && 'quantity' in topping) {
+        if (topping['quantity'] > 0) {
+          toppings += topping['quantity'] + ' ' + topping['topping'] + ' ';
+        }
+      }
+    }
+    
+    return toppings;
   }
 
   public removeTodo() {
     if (!this.todo) return;
     this.todosService.removeTodo(this.todo.id);
   }
-  onMouseEnter() {
-    this.isHovered = true;
+
+  capitalizeFirstLetter(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 
-  onMouseLeave() {
-    this.isHovered = false;
-  }
 }

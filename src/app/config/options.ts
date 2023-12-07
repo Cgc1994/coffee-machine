@@ -1,23 +1,23 @@
 import { FilterStatus, Orders, Syzes, CoffeeTypes, Toppings } from '../interfaces/todos.interfaces';
 import { traductions } from '../utils/traductions';
 
-export const formOptions: { name: string; value: Syzes }[] = [
-  { value: 'small', name: traductions['small'] },
-  { value: 'medium', name: traductions['medium'] },
-  { value: 'large', name: traductions['large'] },
+export const formOptions: { name: string; value: Syzes, price: number }[] = [
+  { value: 'small', name: traductions['small'], price: 2 },
+  { value: 'medium', name: traductions['medium'], price: 3 },
+  { value: 'large', name: traductions['large'], price: 3.5 },
 ];
 
-export const coffeeTypesOptions: { name: string; value: CoffeeTypes }[] = [
-  { value: 'columbian', name: traductions['columbian'] },
-  { value: 'peruvian', name: traductions['peruvian'] },
-  { value: 'brazilian', name: traductions['brazilian'] },
+export const coffeeTypesOptions: { name: string; value: CoffeeTypes, price: number }[] = [
+  { value: 'columbian', name: traductions['columbian'], price: 5 },
+  { value: 'peruvian', name: traductions['peruvian'], price: 6.5 },
+  { value: 'brazilian', name: traductions['brazilian'], price: 6 },
 ];
 
-export const toppingsOptions: { name: string; value: Toppings }[] = [
-  { value: 'Chantilly', name: traductions['chantilly'] },
-  { value: 'Caramel syrup', name: traductions['caramelSyrup'] },
-  { value: 'Chocolate chips', name: traductions['chocolateChips'] },
-  { value: 'Vanilla syrup', name: traductions['vanillaSyrup'] },
+export const toppingsOptions: { name: string; value: Toppings, quantity: number, price: number }[] = [
+  { value: 'Chantilly', name: traductions['chantilly'], quantity: 0, price: 4 },
+  { value: 'Caramel syrup', name: traductions['caramelSyrup'], quantity: 0, price: 2 },
+  { value: 'Chocolate chips', name: traductions['chocolateChips'], quantity: 0, price: 1 },
+  { value: 'Vanilla syrup', name: traductions['vanillaSyrup'], quantity: 0, price: 2 },
 ];
 
 export const filterOptions: { name: string; value: FilterStatus }[] = [
