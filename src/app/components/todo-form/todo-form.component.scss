@@ -61,10 +61,19 @@
     border: 1px solid #888888;
     width: 50%;
     font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 .popup-content button {
     display: block;
     margin: 0 auto;
+}
+.popup-content img {
+    width: 100px;
+    margin: 0 auto; /* Añade este estilo para centrar la imagen horizontalmente */
+    margin-bottom: 1em; /* Agrega un margen inferior para separar la imagen del texto */
 }
 .show {
     display: block;

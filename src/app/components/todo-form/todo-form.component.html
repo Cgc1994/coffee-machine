@@ -75,9 +75,13 @@
     <h1 style="color:black; text-align: center; margin-bottom: 1em">
       Your order number is {{ orderNumber -1 }}
   </h1>
-  <h5 style="color:black; text-align: center; margin-bottom: 1em ">
+  <h5 *ngIf="refundChange !== 0" style="color:black; text-align: center; margin-bottom: 1em ">
       Thanks! Your change is {{ refundChange }}€. Your coffee will be ready in 20 seconds. You can cancel your coffee during that time.
   </h5>
+  <h5 *ngIf="refundChange === 0" style="color:black; text-align: center; margin-bottom: 1em ">
+    Thanks! Your coffee will be ready in 20 seconds. You can cancel your coffee during that time.
+</h5>
+  <img alt="" src="./../../../assets/coffee-machine.png" />
       <button style="background-color: black;" id="closePopup" (click)="closePopup()">
             Close
         </button>

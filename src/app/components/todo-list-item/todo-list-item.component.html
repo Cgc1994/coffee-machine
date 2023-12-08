@@ -3,11 +3,11 @@
     <p> Order Number: {{ todo.orderNumber }}</p>
     <div class="top" *ngIf="showCancelButton">
       <button (click)="removeTodo()">
-        <p style="padding-right:5px; color: white">Cancel</p> <img src="assets/cross_mark.svg" alt="cross" />
+        <p style="padding-right:5px; color: white">Cancel</p><img src="assets/cross_mark.svg" alt="cross" />
       </button>
     </div>
     <div class="top" *ngIf="!showCancelButton">
-        <p style="padding-right:5px; color: white">Ready</p><i class="fa fa-check" style="font-size:24px;color:green"></i>
+        <p style="padding-right:5px; color: white">Ready</p><i class="fa fa-coffee" aria-hidden="true"></i><i class="fa fa-check" style="font-size:24px;color:green"></i>
     </div>
   </div>
 
