@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   FilterStatus,
-  Orders,
   Todo,
-  Syzes,
 } from '../interfaces/todos.interfaces';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -34,20 +32,6 @@ export class TodosService {
     });
   }
 
-  public filterByStatus(syze: FilterStatus) {
-    this.filterSubject.next(syze);
-    return this.todosSubject.asObservable();
-  }
-
-  public orderByDate(order: Orders) {
-    this.todos.sort((a, b) => {
-      const dateA = new Date(a.createdAt).getTime();
-      const dateB = new Date(b.createdAt).getTime();
-      return order === 'newest' ? dateB - dateA : dateA - dateB;
-    });
-    this.update();
-  }
-
   public addTodo(newTodo: Todo) {
     this.todos.push(newTodo);
     this.update();
@@ -58,15 +42,6 @@ export class TodosService {
     this.update();
   }
 
-  public changeTodoStatus(todoId: Todo['id'], newStatus: Syzes) {
-    const todoIndex = this.todos.findIndex((todo) => todo.id === todoId);
-
-    if (todoIndex === -1) return;
-
-    this.todos[todoIndex].syze = newStatus;
-
-    this.update();
-  }
 
   private loadFromLocalStorage() {
     const storedTodos = localStorage.getItem('todos');

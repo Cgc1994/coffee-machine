@@ -1,4 +1,4 @@
-import { FilterStatus, Orders, Syzes, CoffeeTypes, Toppings } from '../interfaces/todos.interfaces';
+import { Syzes, CoffeeTypes, Toppings } from '../interfaces/todos.interfaces';
 import { traductions } from '../utils/traductions';
 
 export const formOptions: { name: string; value: Syzes, price: number }[] = [
@@ -25,20 +25,4 @@ export const paymentOptions: { name: string; value: number, quantity: number}[] 
   { name: '2€ coin', value: 2, quantity: 0 },
   { name: '5€ bill', value: 5, quantity: 0 },
   { name: '10€ bill', value: 10, quantity: 0 },
-];
-
-export const filterOptions: { name: string; value: FilterStatus }[] = [
-  { value: 'all', name: traductions['all'] },
-  ...formOptions,
-];
-
-export const orderOptions: { value: Orders; name: string }[] = [
-  {
-    value: 'newest',
-    name: 'Más Nueva a Más Vieja',
-  },
-  {
-    value: 'oldest',
-    name: 'Más Vieja a Más Nueva',
-  },
 ];

@@ -31,5 +31,3 @@ export type CoffeeTypes = 'columbian' | 'peruvian' | 'brazilian';
 export type Toppings = 'Chantilly' | 'Caramel syrup' | 'Chocolate chips' | 'Vanilla syrup';
 
 export type FilterStatus = Syzes | 'all'
-
-export type Orders = 'newest' | 'oldest'
