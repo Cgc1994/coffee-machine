@@ -1,7 +1,6 @@
 <div *ngIf="todo" class="todo">
   <div class="top">
-    <p *ngIf="todo.createdAt">{{ todo.createdAt | dateFormat }}</p>
-    
+    <p> Order Number: {{ todo.orderNumber }}</p>
     <div class="top" *ngIf="showCancelButton">
       <button (click)="removeTodo()">
         <p style="padding-right:5px; color: white">Cancel</p> <img src="assets/cross_mark.svg" alt="cross" />
@@ -26,8 +25,5 @@
     {{ capitalizeFirstLetter(todo.syze) }} {{ capitalizeFirstLetter(todo.type) }}: {{ todo.price }}€
     </span>
     <p>{{toppings}}</p>
-  </div>
-  <div class="bottom">
-    <p> Order Number: {{ todo.orderNumber }}</p>
   </div>
 </div>

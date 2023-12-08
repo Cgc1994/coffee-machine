@@ -14,7 +14,7 @@ export class TodoListItemComponent {
   ngOnInit() {
     setTimeout(() => {
       this.showCancelButton = false;
-    }, 5000);
+    }, 20000);
   }
 
   private todosService = inject(TodosService);

@@ -43,6 +43,7 @@ export class TodoFormComponent {
     
   }
   public addTodo() {
+    if (this.paid < this.finalPrice) return;
     const selectedToppings: any[] = this.toppingsOptions.map(topping => ({
       topping: topping.name,
       quantity: topping.quantity,
