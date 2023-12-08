@@ -21,10 +21,12 @@ export class TodoFormComponent {
   public toppingsOptions = toppingsOptions;
   public paymentOptions = paymentOptions;
   public isPaying: boolean = false;
+  public isPaid: boolean = false;
   public disabledForm: boolean = false;
   public finalPrice: number = 0;
   public paid: number = 0;
   public orderNumber: number = 1;
+  public refundChange: number = 0;
 
   public payment() {
     if (this.name !== '') {
@@ -56,6 +58,8 @@ export class TodoFormComponent {
       orderNumber: this.orderNumber,
     };
 
+    this.refundChange = this.paid - this.finalPrice;
+
     this.todosService.addTodo(newTodo);
     this.isPaying = false;
     this.disabledForm = false;
@@ -68,6 +72,11 @@ export class TodoFormComponent {
     this.newCoffeeType = coffeeTypesOptions[0];
     this.newToppings = [];
     this.paymentChoice = [];
+    this.isPaid = true;
+  }
+
+  public closePopup() {
+    this.isPaid = false;
   }
 
   public changeSyze(newSyze: { value: Syzes; name: string, price: number }) {

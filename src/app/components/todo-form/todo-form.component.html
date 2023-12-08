@@ -68,3 +68,18 @@
       (onSelect)="changePayedAmount($event)"
     />
   </div>
+  <button *ngIf="paid > finalPrice" (click)="addTodo()">New order</button>
+</div>
+ <div *ngIf="isPaid" id="myPopup" class="popup show">
+  <div class="popup-content">
+    <h1 style="color:black; text-align: center;">
+      Your order number is {{ orderNumber -1 }}
+  </h1>
+  <h5 style="color:black; text-align: center;">
+      Your change is {{ refundChange }}
+  </h5>
+      <button id="closePopup" (click)="closePopup()">
+            Close
+        </button>
+  </div>
+</div>
