@@ -12,8 +12,8 @@
       <span>
         {{ option.name }}
           <span>
-            <button (click)="decreaseQuantity(option)">-</button>
-            <button (click)="increaseQuantity(option)">+</button>
+            <button class="quantity" (click)="decreaseQuantity(option)">-</button>
+            <button class="quantity" (click)="increaseQuantity(option)">+</button>
             {{ option.quantity }}
           </span>
       </span>

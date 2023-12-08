@@ -45,6 +45,7 @@ $select_height: 40px;
         overflow-x: hidden;
         border: 1px solid #29292F;
         z-index: 999;
+        
 
         .option {
             display: flex;
@@ -68,8 +69,7 @@ $select_height: 40px;
                 font-weight: bold;
             }
         }
-
-
+        
     }
 
     .options::-webkit-scrollbar {
@@ -79,5 +79,10 @@ $select_height: 40px;
 
     .options::-webkit-scrollbar-thumb {
         border: 3px solid #ffffff25;
+    }
+    .quantity {
+        border-radius: 100%;
+        padding: 1px 5px;
+        cursor: pointer;
     }
 }
